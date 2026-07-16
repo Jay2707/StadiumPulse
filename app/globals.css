@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+html, body {
+  background-color: #0F1B2D;
+  color: #F5F7EA;
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+}
+
+/* Scoreboard-style live numerals — the app's signature element */
+.led-number {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: #FFB627;
+  text-shadow: 0 0 8px rgba(255, 182, 39, 0.55), 0 0 18px rgba(255, 182, 39, 0.25);
+}
+
+.led-number.green {
+  color: #2F9E5C;
+  text-shadow: 0 0 8px rgba(47, 158, 92, 0.55), 0 0 18px rgba(47, 158, 92, 0.25);
+}
+
+.led-number.red {
+  color: #E4483A;
+  text-shadow: 0 0 8px rgba(228, 72, 58, 0.55), 0 0 18px rgba(228, 72, 58, 0.25);
+}
+
+/* Ticker */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 32s linear infinite;
+}
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid #FFB627;
+  outline-offset: 2px;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0F1B2D;
+}
+::-webkit-scrollbar-thumb {
+  background: #2C3E58;
+  border-radius: 4px;
+}
